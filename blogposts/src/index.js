@@ -3,6 +3,7 @@ import ReactDOM from 'react-dom';
 import { Provider } from 'react-redux';
 import { BrowserRouter, Route } from 'react-router-dom';
 import { createStore, applyMiddleware, compose } from 'redux';
+import promise from 'redux-promise';
 
 import reducers from './reducers';
 import PostsList from './components/PostsList.jsx';
@@ -11,7 +12,11 @@ import Header from './components/Header.jsx';
 
 //store setup
 const composeEnhancers = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose;
-const store = createStore(reducers, {}, composeEnhancers(applyMiddleware()));
+const store = createStore(
+    reducers,
+    {},
+    composeEnhancers(applyMiddleware(promise))
+);
 
 ReactDOM.render(
     <Provider store={store}>
