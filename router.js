@@ -1,5 +1,14 @@
+var axios = require('axios');
+
 module.exports = function(app) {
     app.get('/', function(req, res, next) {
-        res.send(['Keyboard', 'Screen', 'Headphones', 'Something...']);
+        axios
+            .get('http://localhost:5555/posts')
+            .then(response => {
+                res.send(response);
+            })
+            .catch(error => {
+                res.send(error);
+            });
     });
 };

@@ -1,18 +1,61 @@
 {
-  "users": [
-    { "id": "1",
-      "firstname":  "Rodolphe",
-      "age": "23",
-      "pseudo": "Haversham94",
-    }
-  ],
-  "posts": [
-    { "id": 1, "title": "Fullstack programming", "author": "typicode" }
-  ],
-  "comments": [
-    { "id": 1,
-      "body": "design Fullstack application is the best thing ever",
-      "postId": 1
-    }
-  ]
+    "users": [
+        {
+            "id": "1",
+            "firstname": "Rodolphe",
+            "age": "23",
+            "pseudo": "Haversham94"
+        }
+    ],
+    "posts": [
+        {
+            "userId": 1,
+            "id": 1,
+            "title": "Fullstack programming",
+            "content": "that is the content of the post",
+            "category": "young developer"
+        },
+        {
+            "userId": 1,
+            "id": 2,
+            "title": "Fullstack programming",
+            "content": "that is the content of the post ....",
+            "category": "head hunter"
+        },
+        {
+            "userId": 1,
+            "id": 3,
+            "title": "nesciunt quas odio",
+            "content": "repudiandae veniam quaerat sunt sed\nalias aut fugiat sit autem sed est\nvoluptatem omnis possimus esse voluptatibus quis\nest aut tenetur dolor neque",
+            "category": "startup founder"
+        },
+        {
+            "userId": 1,
+            "id": 4,
+            "title": "dolorem eum magni eos aperiam quia",
+            "content": "ut aspernatur corporis harum nihil quis provident sequi\nmollitia nobis aliquid molestiae\nperspiciatis et ea nemo ab reprehenderit accusantium quas\nvoluptate dolores velit et doloremque molestiae",
+            "category": "tech"
+        },
+        {
+            "userId": 1,
+            "id": 5,
+            "title": "magnam facilis autem",
+            "content": "dolore placeat quibusdam ea quo vitae\nmagni quis enim qui quis quo nemo aut saepe\nquidem repellat excepturi ut quia\nsunt ut sequi eos ea sed quas",
+            "category": "work"
+        },
+        {
+            "userId": 1,
+            "id": 6,
+            "title": "dolorem dolore est ipsam",
+            "content": "dignissimos aperiam dolorem qui eum\nfacilis quibusdam animi sint suscipit qui sint possimus cum\nquaerat magni maiores excepturi\nipsam ut commodi dolor voluptatum modi aut vitae",
+            "category": "others"
+        }
+    ],
+    "comments": [
+        {
+            "id": 1,
+            "body": "design Fullstack application is the best thing ever",
+            "postId": 1
+        }
+    ]
 }
