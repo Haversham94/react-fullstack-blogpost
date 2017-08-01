@@ -1,13 +1,17 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import { Provider } from 'react-redux';
-import { BrowserRouter, Route } from 'react-router-dom';
+import { BrowserRouter, Route, Switch } from 'react-router-dom';
 import { createStore, applyMiddleware, compose } from 'redux';
 import promise from 'redux-promise';
 
+import 'bootstrap/dist/css/bootstrap.css';
+import 'bootstrap/dist/css/bootstrap-theme.css';
+import './styles.css';
 import reducers from './reducers';
 import PostsList from './components/PostsList.jsx';
 import PostsDetail from './components/PostsDetail.jsx';
+import PostsNew from './components/PostsNew.jsx';
 import Header from './components/Header.jsx';
 
 //store setup
@@ -23,8 +27,11 @@ ReactDOM.render(
         <BrowserRouter>
             <div>
                 <Header />
-                <Route path="/" component={PostsList} />
-                <Route path="/posts/:id" component={PostsDetail} />
+                <Switch>
+                    <Route path="/posts/new" component={PostsNew} />
+                    <Route path="/posts/:id" component={PostsDetail} />
+                    <Route path="/" component={PostsList} />
+                </Switch>
             </div>
         </BrowserRouter>
     </Provider>,
