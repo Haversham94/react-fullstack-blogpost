@@ -1,7 +1,16 @@
 var axios = require('axios');
+const passport = require('passport');
 
+const auth = require('./auth/passport');
+const Authentication = require('./controllers/authentication');
+
+const requireAuth = passport.authenticate('jwt', { session: false });
+const requireSignin = passport.authenticate('local', { session: false });
 module.exports = function(app) {
-    app.get('/api/posts', function(req, res, next) {
+    app.get('/api', requireAuth, function(req, res) {
+        res.send({ hi: 'there' });
+    });
+    app.get('/api/posts', function(req, res) {
         axios
             .get('http://localhost:5555/posts/')
             .then(response => {
@@ -11,7 +20,7 @@ module.exports = function(app) {
                 res.send(error);
             });
     });
-    app.post('/api/posts', function(req, res, next) {
+    app.post('/api/posts', function(req, res) {
         axios
             .post('http://localhost:5555/posts/', req.body)
             .then(response => {
@@ -21,7 +30,7 @@ module.exports = function(app) {
                 res.send(error);
             });
     });
-    app.get('/api/posts/:id', function(req, res, next) {
+    app.get('/api/posts/:id', function(req, res) {
         axios
             .get(`http://localhost:5555/posts/${req.params.id}`)
             .then(response => {
@@ -31,7 +40,7 @@ module.exports = function(app) {
                 res.send(error);
             });
     });
-    app.delete('/api/posts/:id', function(req, res, next) {
+    app.delete('/api/posts/:id', function(req, res) {
         axios
             .delete(`http://localhost:5555/posts/${req.params.id}`)
             .then(() => {
@@ -41,4 +50,6 @@ module.exports = function(app) {
                 res.send(error);
             });
     });
+    app.post('/signup', Authentication.signup);
+    app.post('/api/signin', requireSignin, Authentication.signin);
 };

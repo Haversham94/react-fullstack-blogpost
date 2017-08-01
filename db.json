@@ -4,7 +4,64 @@
       "id": "1",
       "firstname": "Rodolphe",
       "age": "23",
-      "pseudo": "Haversham94"
+      "pseudo": "Haversham94",
+      "email": "rodolphe@rodolphe.com"
+    },
+    {
+      "email": "cedrick@cedrick.com",
+      "password": "myPassWord",
+      "firstname": "Cedrick",
+      "pseudo": "pseudo",
+      "age": "19",
+      "id": "r112VZ0U-"
+    },
+    {
+      "email": "rudy@rudy.com",
+      "password": "rudy123",
+      "firstname": "Rudy",
+      "pseudo": "rudy123",
+      "age": "20",
+      "id": "By89vZCL-"
+    },
+    {
+      "email": "eddy@eddy.com",
+      "password": "$2a$10$61o4JjNAtquN8A.BBddpiebClL4ZCOOR30mV3jWnGSY1/3Cnqnq8q",
+      "firstname": "Eddy",
+      "pseudo": "eddy123",
+      "age": "20",
+      "id": "BJQg_WCIb"
+    },
+    {
+      "email": "sena@sena.com",
+      "password": "$2a$10$H6iVMGUzwLZ857heHh6QMe54b3CwoXT.XKDwiUfr61ZAgbFEjG7qm",
+      "firstname": "Sena",
+      "pseudo": "Sena123",
+      "age": "20",
+      "id": "Hkcr0-0Ub"
+    },
+    {
+      "email": "oswaldy@oswaldy.com",
+      "password": "$2a$10$iyIu1Wo5H/GcO0PZmC/DuuACsn2u5PvDTt.7rgUtUVUnNVfdBCghe",
+      "firstname": "Oswaldy",
+      "pseudo": "Oswaldy123",
+      "age": "20",
+      "id": "ByVpAZRUZ"
+    },
+    {
+      "email": "aguiboss@aguiboss.com",
+      "password": "$2a$10$GgayboUGwagnU4ZBr8Knm.R8oYSQddDmi1GKb/sIlYiAaT2XbUw4m",
+      "firstname": "Aguiboss",
+      "pseudo": "Aguiboss123",
+      "age": "20",
+      "id": "Bk41tMC8Z"
+    },
+    {
+      "email": "haversham@haversham.com",
+      "password": "$2a$10$y1HvKE3Qei7J/9vamhJvJucqfYNsFpynYgeT3.Oj.FZ6EXXmWOvHu",
+      "firstname": "Haversham",
+      "pseudo": "Haversham123",
+      "age": "23",
+      "id": "rkIKQQRUb"
     }
   ],
   "posts": [
