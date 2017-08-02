@@ -1,12 +1,14 @@
 import axios from 'axios';
+import { push } from 'react-router-redux';
 import {
     FETCH_POSTS,
     CREATE_POSTS,
     FETCH_POST,
     DELETE_POST,
-    AUTH_USER
+    AUTH_USER,
+    AUTH_ERROR,
+    UNAUTH_USER
 } from './types';
-
 export const fetchPosts = () => {
     const request = axios.get('/api/posts');
     return {
@@ -52,8 +54,22 @@ export const signinUser = ({ email, password }, redirect) => {
                 dispatch({ type: AUTH_USER });
                 // store the token to localStorage for futur use
                 localStorage.setItem('token', response.data);
-                redirect();
+                // redirect user to home page
+                dispatch(push('/'));
             })
-            .catch(error => {});
+            .catch(error => {
+                dispatch(authError('Bad credentials'));
+            });
+    };
+};
+
+export const signoutUser = () => {
+    localStorage.removeItem('token');
+    return { type: UNAUTH_USER };
+};
+export const authError = errorMessage => {
+    return {
+        type: AUTH_ERROR,
+        payload: errorMessage
     };
 };
