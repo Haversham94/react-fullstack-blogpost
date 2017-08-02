@@ -35,7 +35,7 @@ class Signin extends Component {
         return (
             <div className="container">
                 <div className="row">
-                    <div className="col-md-6">
+                    <div className="col-md-6 col-md-offset-3">
                         <Field
                             label="Email"
                             type="text"
@@ -51,7 +51,8 @@ class Signin extends Component {
                         <button
                             onClick={handleSubmit(onFormSubmit)}
                             type="submit"
-                            className="btn btn-primary">
+                            className="btn btn-primary"
+                        >
                             Sign in
                         </button>
                     </div>
