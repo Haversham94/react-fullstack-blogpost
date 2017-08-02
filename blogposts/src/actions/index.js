@@ -1,4 +1,5 @@
 import axios from 'axios';
+import _ from 'lodash';
 import { push } from 'react-router-redux';
 import {
     FETCH_POSTS,
@@ -45,6 +46,25 @@ export const deletePost = (postId, cb) => {
     };
 };
 
+export const signupUser = values => {
+    const requestValues = _.omit(values, 'confirmPassword');
+    return dispatch => {
+        axios
+            .post(`/api/signup`, requestValues)
+            .then(response => {
+                // store the token
+                localStorage.setItem('token', response.data.token);
+                // dispatch user
+                dispatch({ type: AUTH_USER });
+                // redirect user to home page
+                dispatch(push('/'));
+            })
+            .catch(err => {
+                dispatch(authError('Oops! Signup Failed'));
+            });
+    };
+};
+
 export const signinUser = ({ email, password }, redirect) => {
     return dispatch => {
         axios
@@ -53,7 +73,7 @@ export const signinUser = ({ email, password }, redirect) => {
                 // set auth to true
                 dispatch({ type: AUTH_USER });
                 // store the token to localStorage for futur use
-                localStorage.setItem('token', response.data);
+                localStorage.setItem('token', response.data.token);
                 // redirect user to home page
                 dispatch(push('/'));
             })
