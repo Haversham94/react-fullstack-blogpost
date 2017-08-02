@@ -6,6 +6,7 @@ import { createStore, applyMiddleware, compose } from 'redux';
 import promise from 'redux-promise';
 import reduxThunk from 'redux-thunk';
 import createHistory from 'history/createBrowserHistory';
+import { ConnectedRouter, routerMiddleware } from 'react-router-redux';
 
 import 'bootstrap/dist/css/bootstrap.css';
 import 'bootstrap/dist/css/bootstrap-theme.css';
@@ -21,8 +22,6 @@ import Signout from './components/auth/Signout.jsx';
 import AmazingFeature from './components/AmazingFeature.jsx';
 import RequireAuth from './components/auth/RequireAuthentication.jsx';
 
-import { ConnectedRouter, routerMiddleware } from 'react-router-redux';
-
 // Create a history for browser
 const history = createHistory();
 
@@ -36,6 +35,8 @@ const store = createStore(
     {},
     composeEnhancers(applyMiddleware(promise, reduxThunk, reactReduxRouter))
 );
+
+// add logic to auth user automatically
 
 ReactDOM.render(
     <Provider store={store}>
