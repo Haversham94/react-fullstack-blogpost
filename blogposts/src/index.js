@@ -18,6 +18,8 @@ import Header from './components/Header.jsx';
 import Signin from './components/auth/Signin.jsx';
 import Signup from './components/auth/Signup.jsx';
 import Signout from './components/auth/Signout.jsx';
+import AmazingFeature from './components/AmazingFeature.jsx';
+import RequireAuth from './components/auth/RequireAuthentication.jsx';
 
 import { ConnectedRouter, routerMiddleware } from 'react-router-redux';
 
@@ -42,6 +44,10 @@ ReactDOM.render(
                 <Header />
                 <Switch>
                     <Route path="/signin" component={Signin} />
+                    <Route
+                        path="/feature"
+                        component={RequireAuth(AmazingFeature)}
+                    />
                     <Route path="/signup" component={Signup} />
                     <Route path="/signout" component={Signout} />
                     <Route path="/posts/new" component={PostsNew} />
