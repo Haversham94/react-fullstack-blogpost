@@ -48,7 +48,10 @@ export const signinUser = ({ email, password }, redirect) => {
         axios
             .post(`/api/signin`, { email, password })
             .then(response => {
+                // set auth to true
                 dispatch({ type: AUTH_USER });
+                // store the token to localStorage for futur use
+                localStorage.setItem('token', response.data);
                 redirect();
             })
             .catch(error => {});
