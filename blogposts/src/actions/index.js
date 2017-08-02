@@ -1,6 +1,11 @@
 import axios from 'axios';
-
-import { FETCH_POSTS, CREATE_POSTS, FETCH_POST, DELETE_POST } from './types';
+import {
+    FETCH_POSTS,
+    CREATE_POSTS,
+    FETCH_POST,
+    DELETE_POST,
+    AUTH_USER
+} from './types';
 
 export const fetchPosts = () => {
     const request = axios.get('/api/posts');
@@ -35,5 +40,17 @@ export const deletePost = (postId, cb) => {
     return {
         type: DELETE_POST,
         payload: postId
+    };
+};
+
+export const signinUser = ({ email, password }, redirect) => {
+    return dispatch => {
+        axios
+            .post(`/api/signin`, { email, password })
+            .then(response => {
+                dispatch({ type: AUTH_USER });
+                redirect();
+            })
+            .catch(error => {});
     };
 };
