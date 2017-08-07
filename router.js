@@ -1,14 +1,24 @@
 var axios = require('axios');
 const passport = require('passport');
 
-const auth = require('./auth/passport');
+require('./auth/passport');
 const Authentication = require('./controllers/authentication');
 
 const requireAuth = passport.authenticate('jwt', { session: false });
+
+const requireGoogleAuthFirst = passport.authenticate('google', {
+    scope: ['profile', 'email']
+});
+const requireGoogleAuth = passport.authenticate('google');
+
 const requireSignin = passport.authenticate('local', { session: false });
+
 module.exports = function(app) {
     app.get('/api', requireAuth, function(req, res) {
-        res.send({ hi: 'there' });
+        res.send({
+            hi:
+                'very protected resource pass code: tout est 1 et 1 est tout DEV'
+        });
     });
     app.get('/api/posts', function(req, res) {
         axios
@@ -50,6 +60,17 @@ module.exports = function(app) {
                 res.send(error);
             });
     });
-    app.post('/signup', Authentication.signup);
-    app.post('/api/signin', requireSignin, Authentication.signin);
+    app.get('/auth/google', requireGoogleAuthFirst);
+    app.get('/auth/google/callback', requireGoogleAuth, function(req, res) {
+        res.redirect('/');
+    });
+    app.get('/api/auth/me', function(req, res) {
+        res.send(req.user);
+    });
+    app.get('/api/auth/logout', function(req, res) {
+        req.logout();
+        res.send(req.user);
+    });
+    app.post('/api/signup', Authentication.signup);
+    app.post('/api/signin', Authentication.signin);
 };
