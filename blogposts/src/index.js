@@ -8,6 +8,7 @@ import reduxThunk from 'redux-thunk';
 import createHistory from 'history/createBrowserHistory';
 import { ConnectedRouter, routerMiddleware } from 'react-router-redux';
 
+import { AUTH_USER } from './actions/types';
 import 'bootstrap/dist/css/bootstrap.css';
 import 'bootstrap/dist/css/bootstrap-theme.css';
 import './styles.css';
@@ -22,7 +23,7 @@ import Signout from './components/auth/Signout.jsx';
 import AmazingFeature from './components/AmazingFeature.jsx';
 import RequireAuth from './components/auth/RequireAuthentication.jsx';
 
-// Create a history for browser
+// Create a history for browser environment
 const history = createHistory();
 
 // Build the middleware for intercepting and dispatching navigation actions
@@ -37,6 +38,11 @@ const store = createStore(
 );
 
 // add logic to auth user automatically
+const token = localStorage.getItem('token');
+
+if (token) {
+    store.dispatch({ type: AUTH_USER });
+}
 
 ReactDOM.render(
     <Provider store={store}>
