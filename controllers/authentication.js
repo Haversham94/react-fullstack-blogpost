@@ -3,14 +3,11 @@ const jwt = require('jwt-simple');
 const _ = require('lodash');
 const bcrypt = require('bcrypt-nodejs');
 const config = require('../config');
+const passport = require('passport');
 
-function tokenForUser(user) {
-    console.log(user.id);
-    const timestamp = new Date().getTime();
-    return jwt.encode({ sub: user.id, iat: timestamp }, config.secret);
-}
+const Utils = require('../auth/utils');
 
-exports.signup = function(req, res, next) {
+exports.signup = function(req, res) {
     const email = req.body.email;
     let password = req.body.password;
     const firstname = req.body.firstname;
@@ -44,12 +41,26 @@ exports.signup = function(req, res, next) {
                     })
                     .then(response => {
                         //successfully persited data
-                        res.send({ success: tokenForUser(response.data) });
+                        res.send({
+                            success: Utils.tokenForUser(response.data)
+                        });
                     });
             });
         });
     });
 };
-exports.signin = function(req, res) {
-    res.send({ token: tokenForUser(req.user) });
+exports.signin = function(req, res, next) {
+    passport.authenticate('local', function(err, user, info) {
+        const error = err || info;
+        console.log(info);
+        if (error) {
+            return res.status(401).json(error);
+        }
+        if (!user)
+            return res
+                .status(401)
+                .json({ message: 'Something went wrong, please try again.' });
+        const token = Utils.tokenForUser(user);
+        res.json({ token });
+    })(req, res, next);
 };
