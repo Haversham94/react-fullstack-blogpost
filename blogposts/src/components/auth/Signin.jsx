@@ -10,6 +10,16 @@ class Signin extends Component {
         this.renderField = this.renderField.bind(this);
         this.onFormSubmit = this.onFormSubmit.bind(this);
     }
+    renderAlert() {
+        const { authErrorMessage } = this.props;
+        if (authErrorMessage) {
+            return (
+                <div className="alert alert-danger">
+                    <strong>Oops</strong> {authErrorMessage}
+                </div>
+            );
+        }
+    }
     renderField(field) {
         return (
             <div className="form-group">
@@ -48,11 +58,11 @@ class Signin extends Component {
                             name="password"
                             component={renderField}
                         />
+                        {this.renderAlert()}
                         <button
                             onClick={handleSubmit(onFormSubmit)}
                             type="submit"
-                            className="btn btn-primary"
-                        >
+                            className="btn btn-primary">
                             Sign in
                         </button>
                     </div>
@@ -62,6 +72,11 @@ class Signin extends Component {
     }
 }
 
+function mapStateToProps(state) {
+    return {
+        authErrorMessage: state.auth.error
+    };
+}
 export default reduxForm({
     form: 'signin'
-})(connect(null, { signinUser })(Signin));
+})(connect(mapStateToProps, { signinUser })(Signin));

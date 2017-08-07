@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Link } from 'react-router-dom';
+import { NavLink, Link } from 'react-router-dom';
 import { connect } from 'react-redux';
 
 class Header extends Component {
@@ -18,7 +18,10 @@ class Header extends Component {
                 <li key={1}>
                     <Link to="/signin" className="nav-link">
                         Sign In
-                    </Link>
+                    </Link>{' '}
+                </li>,
+                <li key={3}>
+                    <a href="/auth/google">Sign In with Google</a>
                 </li>,
                 <li key={2}>
                     <Link to="/signup" className="nav-link">
@@ -38,11 +41,29 @@ class Header extends Component {
                         </Link>
                     </div>
                     <ul className="nav navbar-nav">
-                        <li className="active">
-                            <a className="btn btn-link">Link</a>
+                        <li className="nav-item">
+                            <NavLink
+                                to="/databasedata"
+                                activeClassName="active"
+                                className="nav-link btn btn-link">
+                                Database
+                            </NavLink>
+                        </li>
+                        <li className="nav-item">
+                            <NavLink
+                                to="/grapqldata"
+                                activeClassName="active"
+                                className="nav-link btn btn-link">
+                                GraphQL
+                            </NavLink>
                         </li>
                         <li>
-                            <a className="btn btn-link">Link</a>
+                            <NavLink
+                                to="/feature"
+                                activeClassName="current"
+                                className="nav-link btn btn-link">
+                                Amazing Feature
+                            </NavLink>
                         </li>
                     </ul>
                     <ul className="nav navbar-nav navbar-right">
